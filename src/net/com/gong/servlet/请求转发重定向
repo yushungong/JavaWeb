@@ -1,0 +1,35 @@
+重定向
+	request.sendRedirect("重定向的路径");
+
+请求转发
+	RequestDispatcher对象由servlet容器创建，用于封装目标资源路径
+	使用RequestDispatcher对象可以把请求转发给其他资源
+	RequestDispatcher接口定义了两个方法
+
+	forward
+		把请求和响应传递给服务器上的另一个servlet资源
+		调用方式：request.getRequestDispatcher("请求转发路径").forward(request,response);
+	include
+		在响应中包含其他资源（servlet、jsp、页面或html文件等）
+		调用方式：request.getRequestDispatcher("请求转发路径").include(request,response);
+	两者的区别：
+		forward方法执行后将由被调用的其他资源负责对请求做出响应，原先的servlet执行将被终止
+		include方法被执行后，被调用的其他资源对请求做出的响应将被并入原先的响应对象中，原先的servlet还能继续输出响应信息
+	
+工作原理：
+	sendRedirect：
+		1、客户端访问servlet
+		2、servlet需要调用另外的资源
+		3、servlet使用sendRedirect发回响应，要求客户端重新定向到另外的资源
+		4、浏览器访问另外的资源
+		这个过程是透明的，地址栏回显示重定向后的URL，sendRedirect还可以访问其他的web资源，甚至是其他网站下的允许访问的资源
+	forward:
+		1、客户端访问servlet
+		2、servlet需要调用另外的资源
+		3、servlet使用forward直接将请求转发给另外的资源
+		4、另外的资源对客户端的请求做出响应
+		这个过程对客户端是不透明的，地址栏的URL不变，forward方法还能访问到WEB-INF文件夹下的资源，保证了访问的安全性
+	
+注意：getRequestDispatcher方法传入的资源路径一般以"/"开头，表示该web应用程序上下文的根
+
+	

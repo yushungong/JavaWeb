@@ -1,0 +1,44 @@
+JSP
+Java服务器页面（Java Server Page,JSP）技术
+
+JSP运行机制
+	JSP生命周期分为两个阶段
+		转换阶段
+			客户端向服务器（JSP容器）请求JSP页面
+			JSP容器检查JSP页面语法是否正确
+			把JSP页面转换成Servlet的Java源文件
+			调用JDK的javac工具类编译该Java源文件成字节码文件
+			(生成的源文件和字节码文件都放在tomcat的work\Catalina\localhost文件夹下)
+		执行阶段
+			servlet容器加载转换后的servlet类，并实例化一个servlet对象来处理客户端请求
+			处理完成后将响应信息以HTML的格式发回给客户端
+
+JSP include指令和includ动作区别
+	参阅：WebContent/jsp_test/testInclude.jsp
+	
+JSP隐含对象（9种）
+	request	客户端的请求信息
+	response	传回客户端的响应信息
+	pageContext	JSP页面的上下文，用于访问页面属性
+	session		于请求有关的会话
+	application		提供servlet上下文全局数据，一旦创建保持到服务器关闭
+	out 	向客户端浏览器输出数据的数据流
+	page	同Java中的this，即jsp页面本身
+	config	servlet的配置对象
+	exception	针对错误网页，捕捉网页中未捕捉的异常
+	
+JSP对象范围（四种）
+	page
+		page范围的对象被绑定到javax.servlet.jsp.PageContext对象中。
+		这个范围的对象只能被创建当前对象的页面访问，当页面卸载，设置在该范围的对象将被删除
+	request
+		request范围的对象被绑定在javax.servlet.http.HttpServletRequest对象中。
+		这个范围内的对象只能被创建对象的用户请求访问，对于使用请求转发的页面仍然能够访问之前设置的对象，
+		但当请求发生变化（如URL发生改变）之前设置在该范围的对象将被删除
+	session
+		session范围的对象被绑定在javax.servlet.http.HttpSession对象中。
+		这个范围内的对象只能被创建对象的用户会话访问，只要会话保持活动，之前设置在该范围的对象都能被访问，
+		当会话被注销或发生改变后，之前设置在该范围的对象将被删除	
+	application
+		application范围的对象被绑定在javax.servlet.ServletContext对象中。
+		这个范围内的对象可以被整个web应用程序访问

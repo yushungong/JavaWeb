@@ -1,0 +1,49 @@
+核心标签库（c标签库）
+	一般标签：
+		<c:out>		输出属性内容
+		<c:set>		设置属性内容
+		<c:remave>  删除指定属性
+		<c:catch>	异常捕捉
+	条件标签：
+		<c:if>		条件判断
+		<c:choose>	多条件判断，可以设置<c:when>和<c:otherwise>标签
+	迭代标签：
+		<c:forEach> 输出数组、集合
+		<c:forTokens> 字符串拆分及输出
+	导入标签：
+		<c:import>	导入基于URL的资源
+	包含URL标签：
+		<c:url>		使用正确的URL重新规则构造一个URL
+	客户端跳转标签：
+		<c:redirect> 客户端跳转
+		
+fn标签库（函数库）
+	每个函数中fn后的内容与JavaSE中String类的一些方法同名
+	其实jstl中的fn标签库，就是jstl对String类封装，他的使用大体上与Sting类的同名方法类似
+	
+	${fn:contains}		查询某字符串书否存在
+	${fn:startsWith}	判断是否以指定字符串开头
+	等等。。。（不一一例举）
+	
+fm标签库
+	根据功能可分为国际化和对日期、时间、数字的格式化
+
+SQL和XML标签库
+
+自定义标签
+	jsp规范规定，标签名扩展必须是.tag或.tagx，前者使用普通的jsp语法，后者使用xml标签语法，一般使用.tag。
+	标签文件存放的位置必须在/WEB-INF/tags目录下。容器会自动搜索该目录及其子目录下的所有.tag或.tagx文件。
+	自定义标签语法与JSP标签语法类似，但是不能使用JSP的page指令。灵位标签文件可以使用tag、attribute和
+	variable指令。
+	
+	tag指令：
+		他是一个标签文件的声明，包含一些属性
+		语法：<%@tag 属性列 %>
+	
+	attribute指令：
+		用于声明自定义标签的属性，他有1个必须的属性name和5个可选属性
+		语法：<%@attribute name="此为必填属性" 其他属性 %>
+	
+	variable指令：
+		用于定义标签处理器提供给JSP页面使用的变量详细信息。一般来说很少用到该指令。
+	实例（）

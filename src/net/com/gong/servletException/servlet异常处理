@@ -1,0 +1,17 @@
+1、声明式异常处理（代码请查阅web.xml）
+	在web.xml文件中声明各种异常，通过 <error-page> 元素来声明
+	在该元素中需要指定子元素<error-code>指定HTTP状态代码
+	或通过子元素<exception-type>指定java异常类型
+	然后通过子元素<location>给出响应错误或异常的资源路径。
+	该路径对应于web应用程序根路径位置，必须以"/"开头
+
+	对于servlet/JSP开发，遇到异常时，常见的HTTP状态代码时404和500
+	
+使用try-catch处理异常
+	在servlet中使用try-catch快捕获异常
+	使用request.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"异常提示内容") 处理异常
+	好处是可以灵活的处理异常，还可以在代码中调用日志记录信息
+	坏处是不能自定义页面，而只是一个信息输出页面
+	
+	也可以在try-catch中使用请求转发来处理异常
+	

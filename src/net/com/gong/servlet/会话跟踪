@@ -1,0 +1,25 @@
+HTTP协议是基于请求、响应模式的、无状态的协议，也就是说请求一旦得到响应，链接就关闭，所以作为web服务器必须采用一种机制来标识用户并记录其状态
+为了实现这种需求，需要机制如下
+	会话：服务器应当能过表示出一个用户的一系列请求，并组成一个单独的工作会话，以区分各个用户
+	状态：服务器应当能记住之前请求的信息，给每个会话联系状态
+	
+会话跟踪技术
+	servlet API 使用session来跟踪会话和管理状态，当客户端里一次链接的服务器是，服务器会分配一个标识（SessionID）,服务器根据SessionID找到特定的Session，并记录用户的状态。
+
+在servlet规范中支持3中会话跟踪技术
+	Cookie
+		存于客户端浏览器的内存中或硬盘上，在servlet规范中用于会话跟踪的Cookie名字为JSESSIONID
+	URL重写
+		是会话跟踪的最低标准，当客户端不接受Cookie时，使用URL重写作为会话跟踪的基础。URL重写会把会话ID编码为URL字符串中的参数，参数名称为jsessionid，如下格式：
+		http://www.mytomcat.com/xxx/xxx.html;jsessionid=1234567890
+		实现方法：response.encodeURL("xxx") 或 response.encodeRedirectURL("xxx")
+				开发时不需要考虑客户端是否禁用Cookie,对所有链接和重定向语句调用此方法，方法会自动判断是否禁用了Cookie
+	SSL(安全套接字层)会话
+		用于保障数据传输之安全，利用数据加密技术，可以确保数据在网上不被窃听及截取，它使用HTTPS协议（该协议默认端口号443，在tomcat中默认端口号是8443）
+		
+Cookie的应用
+	servlet提供了一个Cookie类用来操作Cookie
+	
+	练习：利用cookie实现自动登陆
+		原理：使用cookie来保存登陆成功后的jsessionid，用户名和密码到客户端的硬盘上，当浏览器关闭再打开后访问登陆成功后的页面时，浏览器会先将先前的Cookie保存的jssionid、用户名和密码
+		进行验证，验证通过后就能直接访问目标页面了。

@@ -1,0 +1,43 @@
+EL表达式语法：
+	${var}
+EL表达式可以自动过滤null值
+
+算数操作符（ + - * / % ）
+	语法：${10 + 20}
+关系操作符
+	== 	或	eq
+	!= 	或 	ne
+	< 	或 	lt
+	> 	或 	gt
+	<= 	或 	le
+	>= 	或 	ge
+	语法：${10 >= 20}
+逻辑操作符
+	&&  或 	and
+	||  或 	or
+	! 	或	not
+	语法：${true && false}
+Empty
+	判断是否为空
+	语法：${empty var}
+	
+三目操作符
+	语法${num1 > num2 ? "num1大于num2" : "num1小于num2"}
+
+EL隐含对象（11个）
+	pageContext		表示javax.servlet.jsp.PageContext对象
+	pageScope		表示从page属性范围查找属性
+	requestScopr	表示从request属性范围查找对象
+	sessionScopre	表示从session属性范围查找对象
+	applicationScopr 表示从application属性范围查找对象
+	param			表示传递到本页面的参数
+	paramValues		接收传递到本页面的一组参数
+	heard			取得一个头信息
+	heardValues		取得一组头信息
+	cookies			取得cookie
+	initParam		取得配置的初始化参数
+	
+如果jsp中出现不同属性范围的同名属性，默认按照page-->request-->session-->application的优先级获取
+
+如果要取指定属性范围的属性，去要使用EL隐含对象
+	语法：${pageScope.var} 获取page属性范围的var属性对象
