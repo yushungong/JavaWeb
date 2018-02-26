@@ -8,6 +8,21 @@
         <dependent-module archiveName="jstl.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jar_home/jstl/jstl.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="mina-core-2.0.12.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jar_home/other/mina-core-2.0.12.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mina-integration-beans-2.0.12.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jar_home/other/mina-integration-beans-2.0.12.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-compress-1.16.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jar_home/other/commons-compress-1.16.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jlrnt-common.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jar_home/jlrnt/jlrnt-common.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dom4j-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jar_home/dom4j/dom4j-1.6.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/JavaWeb/build/classes"/>
         <property name="context-root" value="JavaWeb"/>
     </wb-module>
