@@ -18,6 +18,48 @@
   	<location>/ace.jsp</location>
   </error-page>
   
+	<!-- 第一个过滤器 -->
+	<filter>
+		<filter-name>firstFilter</filter-name>
+		<filter-class>net.com.gong.filter.HelloFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>firstFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 配置第二个过滤器 -->
+	<!-- 演示： 拦截指定的请求 -->
+	<!-- <filter>
+		<filter-name>hello_filter2</filter-name>
+		<filter-class>cn.itcast.a_filter_hello.HelloFilter2</filter-class>
+	</filter>
+	<filter-mapping> -->
+		<!--<filter-name>hello_filter2</filter-name>
+		 1. 拦截所有
+	<url-pattern>/*</url-pattern>
+	 -->
+	
+	<!-- 2. 拦截指定的jsp 
+	<url-pattern>/index.jsp</url-pattern>
+	<url-pattern>/list.jsp</url-pattern>
+	-->
+	<!-- 拦截所有的jsp
+	<url-pattern>*.jsp</url-pattern>
+	 -->
+	<!-- 3. 根据servlet的内部名称拦截
+	<servlet-name>IndexServlet</servlet-name>
+	 -->
+	<!-- 拦截指定的servlet 
+	<url-pattern>/index</url-pattern>
+	-->
+	
+	<!-- 4. 指定拦截指定的类型 -->
+	<!-- <url-pattern>/*</url-pattern>
+	拦截直接访问的请求或者重定向的资源
+	<dispatcher>REQUEST</dispatcher>
+	<dispatcher>FORWARD</dispatcher>
+	</filter-mapping> -->
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

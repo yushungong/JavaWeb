@@ -1,0 +1,29 @@
+4.2 常见的响应头
+	Location: http://www.it315.org/index.jsp   -表示重定向的地址，该头和302的状态码一起使用。
+	Server:apache tomcat                 ---表示服务器的类型
+	Content-Encoding: gzip                 -- 表示服务器发送给浏览器的数据压缩类型
+	Content-Length: 80                    --表示服务器发送给浏览器的数据长度
+	Content-Language: zh-cn               --表示服务器支持的语言
+	Content-Type: text/html; charset=GB2312   --表示服务器发送给浏览器的数据类型及内容编码
+	Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT  --表示服务器资源的最后修改时间
+	Refresh: 1;url=http://www.it315.org     --表示定时刷新
+	Content-Disposition: attachment; filename=aaa.zip --表示告诉浏览器以下载方式打开资源（下载文件时用到）
+	Transfer-Encoding: chunked
+	Set-Cookie:SS=Q0=5Lb_nQ; path=/search   --表示服务器发送给浏览器的cookie信息（会话管理用到）
+	Expires: -1                           --表示通知浏览器不进行缓存
+	Cache-Control: no-cache
+	Pragma: no-cache
+	Connection: close/Keep-Alive           --表示服务器和浏览器的连接状态。close：关闭连接 keep-alive:保存连接
+
+4.3 HttpServletResponse对象
+	HttpServletResponse对象修改响应信息：
+
+					响应行： 
+							response.setStatus()  设置状态码
+					响应头： 
+							response.setHeader("name","value")  设置响应头
+					实体内容：
+							response.getWriter().writer();   发送字符实体内容
+							response.getOutputStream().writer()  发送字节实体内容
+	
+	

@@ -1,0 +1,20 @@
+监听器： 主要是用来监听特定对象的创建或销毁、属性的变化的！
+
+监听器接口：
+一、监听对象创建/销毁的监听器接口
+	Interface ServletRequestListener     监听request对象的创建或销毁
+	Interface HttpSessionListener        监听session对象的创建或销毁
+	Interface ServletContextListener     监听servletContext对象的创建或销毁
+二、监听对象属性的变化
+	Interface ServletRequestAttributeListener 监听request对象属性变化: 添加、移除、修改
+	Interface HttpSessionAttributeListener    监听session对象属性变化: 添加、移除、修改
+	Interface ServletContextAttributeListener  监听servletContext对象属性变化
+
+三、session相关监听器
+	Interface HttpSessionBindingListener   监听对象绑定到session上的事件
+	这个session监听器，和上面的声明周期、属性监听器区别？
+	-- 不用再web.xml配置
+   	- 因为监听的对象是自己创建的对象，不是服务器对象！
+	
+		
+    Interface HttpSessionActivationListener(了解) 监听session序列化及反序列化的事件

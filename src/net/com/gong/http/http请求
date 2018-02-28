@@ -1,0 +1,52 @@
+3.2 请求头
+	Accept: text/html,image/*      -- 浏览器接受的数据类型
+	Accept-Charset: ISO-8859-1     -- 浏览器接受的编码格式
+	Accept-Encoding: gzip,compress  --浏览器接受的数据压缩格式
+	Accept-Language: en-us,zh-       --浏览器接受的语言
+	Host: www.it315.org:80          --（必须的）当前请求访问的目标地址（主机:端口）
+	If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT  --浏览器最后的缓存时间
+	Referer: http://www.it315.org/index.jsp      -- 当前请求来自于哪里
+	User-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)  --浏览器类型
+	Cookie:name=eric                     -- 浏览器保存的cookie信息
+	Connection: close/Keep-Alive            -- 浏览器跟服务器连接状态。close: 连接关闭  keep-alive：保存连接。
+	Date: Tue, 11 Jul 2000 18:23:51 GMT      -- 请求发出的时间
+
+3.4 HttpServletRequest对象
+		HttpServletRequest对象作用是用于获取请求数据。
+	
+			   核心的API：
+				请求行： 
+					request.getMethod();   请求方式
+					request.getRequetURI()   / request.getRequetURL()   请求资源
+					request.getProtocol()   请求http协议版本
+				
+				请求头：
+					request.getHeader("名称")   根据请求头获取请求值
+					request.getHeaderNames()    获取所有的请求头名称
+	
+				实体内容:
+					request.getInputStream()   获取实体内容数据
+					
+3.8 传递的请求参数如何获取		
+	 GET方式： 参数放在URI后面
+	 POST方式： 参数放在实体内容中
+	
+	获取GET方式参数：
+			request.getQueryString();
+	获取POST方式参数：
+			request.getInputStream();
+	
+	问题：但是以上两种不通用，而且获取到的参数还需要进一步地解析。
+	所以可以使用统一方便的获取参数的方式：
+		
+	 	核心的API：
+		request.getParameter("参数名");  根据参数名获取参数值（注意，只能获取一个值的参数）
+		request.getParameterValue("参数名“)；根据参数名获取参数值（可以获取多个值的参数）
+	
+		request.getParameterNames();   获取所有参数名称列表 
+
+3.9 请求参数编码问题
+	修改POST方式参数编码：
+			request.setCharacterEncoding("utf-8");
+	修改GET方式参数编码：
+			手动解码：String name = new String(name.getBytes("iso-8859-1"),"utf-8");
