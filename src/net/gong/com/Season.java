@@ -16,5 +16,4 @@ public enum Season {
 	public String getSeasonDesc(){
 		return seasonDesc;
 	}
-	
 }

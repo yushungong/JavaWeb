@@ -9,17 +9,18 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 //增加了日志和计时功能的自定义线程池
-public class TimingThreadPool extends ThreadPoolExecutor{
-	
+public class TimingThreadPool extends ThreadPoolExecutor {
+
 	private final ThreadLocal<Long> startTime = new ThreadLocal<Long>();
-	
+
 	private final Logger log = Logger.getLogger("TimingThreadPool");
-	
+
 	private final AtomicLong numTasks = new AtomicLong();
-	
+
 	private final AtomicLong totalTime = new AtomicLong();
-	
+
 	public TimingThreadPool(int corePoolSize, int maximumPoolSize,
 			long keepAliveTime, TimeUnit unit,
 			BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory) {
@@ -39,14 +40,15 @@ public class TimingThreadPool extends ThreadPoolExecutor{
 		fileHandler.setFormatter(sf);
 		log.addHandler(fileHandler);
 	}
-	
+
 	@Override
 	protected void beforeExecute(Thread t, Runnable r) {
 		super.beforeExecute(t, r);
-		log.info(String.format("beforeExecute：Thread %s: start %s", t.getName(), r));
+		log.info(String.format("beforeExecute：Thread %s: start %s",
+				t.getName(), r));
 		startTime.set(System.nanoTime());
 	}
-	
+
 	@Override
 	protected void afterExecute(Runnable r, Throwable t) {
 		try {
@@ -55,18 +57,21 @@ public class TimingThreadPool extends ThreadPoolExecutor{
 			long taskTime = endTime - startTime.get();
 			numTasks.incrementAndGet();
 			totalTime.addAndGet(taskTime);
-			log.info(String.format("afterExecute：Thread %s: end %s, 线程运行时间 = %dns", t, r, taskTime));
-		} finally{
+			log.info(String.format(
+					"afterExecute：Thread %s: end %s, 线程运行时间 = %dns", t, r,
+					taskTime));
+		} finally {
 			super.afterExecute(r, t);
 		}
 	}
-	
+
 	@Override
 	protected void terminated() {
 		try {
-			log.info(String.format("Terminated: avg time=%dns",totalTime.get() / numTasks.get()));
-		} finally{
-			super.terminated();			
+			log.info(String.format("Terminated: avg time=%dns", totalTime.get()
+					/ numTasks.get()));
+		} finally {
+			super.terminated();
 		}
 	}
 }

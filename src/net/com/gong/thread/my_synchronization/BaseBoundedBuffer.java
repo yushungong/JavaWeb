@@ -1,4 +1,7 @@
 package net.com.gong.thread.my_synchronization;
+
+import java.util.HashMap;
+
 //有界缓存实现基类
 //此为错误案例，不可以用抛异常来处理处理
 public abstract class BaseBoundedBuffer<V> {
@@ -37,5 +40,8 @@ public abstract class BaseBoundedBuffer<V> {
 	
 	public synchronized final boolean isEnpty(){
 		return count == 0;
+	}
+	public static <K,V> HashMap<K,V> newHashMap(){
+		return new HashMap<K,V>();
 	}
 }
